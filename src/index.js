@@ -1,22 +1,24 @@
-// import './styles/app.scss';
-// import 'bootstrap';
-// import $ from 'jquery';
-// // import midImage from '@/assets/mid.jpeg';
-// // import { fetchData } from '@/js/utils';
-// import midImage from './assets/mid.jpeg';
-// import { fetchData } from './js/utils';
+import './style/app.scss';
+import 'bootstrap';
+// import 'bootstrap.bundle';
+import $ from 'jquery';
+import '@babel/polyfill'
+import midImage from './assets/mid.jpg';
+import { fetchData } from './js/utils';
 
-// $(function () {
-//   $('[data-toggle="tooltip"]').tooltip();
+$(function () {
+  //讀取js
+  $('[data-toggle="tooltip"]').tooltip();
 
-//   const img = document.querySelector('[data-target="dynamic-image"]');
-//   img.src = midImage;
+  //讀取檔案
+  const img = document.querySelector('[data-target="dynamic-image"]');
+  img.src = midImage;
 
-//   fetchData().then((data) => {
-//     const { userId, id, title } = data;
-//     console.log('response', { ...data, newTitle: `new ${data?.title}` });
-//   });
-// });
+  fetchData().then((data) => {
+    const { userId, id, title } = data;
+    console.log('response', { ...data, newTitle: `new ${data?.title}` });
+  });
+});
 
 console.log('index js')
 
