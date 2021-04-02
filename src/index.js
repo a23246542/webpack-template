@@ -1,10 +1,10 @@
-import './style/app.scss';
 import 'bootstrap';
-// import 'bootstrap.bundle';
 import $ from 'jquery';
+import '@/style/app.scss';
+// import 'bootstrap.bundle';
 import '@babel/polyfill'
-import midImage from './assets/mid.jpg';
-import { fetchData } from './js/utils';
+import { fetchData } from '@/js/utils';
+import midImage from '@/assets/mid.jpg';
 
 $(function () {
   //讀取js

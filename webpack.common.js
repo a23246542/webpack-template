@@ -47,13 +47,18 @@ module.exports = {
       // },
     ]
   },
-  // resolve: {
-  //   extensions: ['.js', '.jsx', '.json'],
-  //   alias: {
-  //     '@':srcPath,
-  //   },
-  // },
+  resolve: {
+    // modules:[
+    //   // path.resolve(srcPath)
+    //   // path.resolve('node_modules')
+    // ],
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      '@':srcPath,
+    },
+  },
   plugins:[
+    new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template:`${srcPath}/index.html`,
       filename:'index.html'
