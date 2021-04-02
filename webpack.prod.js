@@ -1,9 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpackCommonConf = require('./webpack.common.js')
-const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./path')
+const { merge } = require('webpack-merge')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(webpackCommonConf, {
     mode: 'production',
@@ -53,16 +54,38 @@ module.exports = merge(webpackCommonConf, {
                             interlaced: false,
                         }
                     }
-                  }
+                  },
                 ]
             },
+            {
+              test: /\.(tiff|ico|svg|eot|otf|ttf|woff|woff2)$/,
+              use: {
+              // use: [
+                // {
+                  loader: 'file-loader',
+                  options: {
+                    name: '[path][name].[ext]?[hash]'
+                //   }
+                }
+              // ]
+              }
+            }
         ]
     },
     plugins: [
         new CleanWebpackPlugin(), // 會默認清空 output.path 文件夾
+        new CopyWebpackPlugin({
+          patterns:[ //新版寫法
+            {
+              from:'src/assets/static',
+              to: 'assets/static',
+              noErrorOnMissing: true //避免ERROR in unable to locate/assets/static' glob
+            }
+          ]
+        })
         // new webpack.DefinePlugin({
         //     // window.ENV = 'production'
-        //     ENV: JSON.stringify('production')
+        //     ENV: JSON.stringify('production'
         // })
     ]
 })
