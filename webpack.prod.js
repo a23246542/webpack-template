@@ -9,10 +9,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = merge(webpackCommonConf, {
     mode: 'production',
     output: {
-        filename: 'bundle.[contenthash:8].js',  // 打包程式碼時，加上 hash 戳
-        // filename: './js/[name].js?[contenthash:8]',
         path: distPath,
-        // publicPath: 'http://cdn.abc.com'  // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
+        // filename: 'bundle.[contenthash:8].js',  // 打包程式碼時，加上 hash 戳
+        filename: './js/[name].js?[contenthash:8]',// [name] 會被 entry 中的 key 換調，沒寫預設main.js
+        // publicPath: 'http://cdn.abc.com'  // 修改所有靜態文件 url 的前綴（如 cdn 域名），這裡暫時用不到
     },
     module: {
         rules: [

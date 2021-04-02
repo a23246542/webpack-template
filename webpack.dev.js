@@ -34,7 +34,7 @@ module.exports = merge(webpackCommonConf,{
       contentBase: distPath,  // 根目錄(設定當前的目錄)
       open: true,  // 自動打開瀏覽器
       progress: true,  // 顯示打包的進度條
-      compress: true,  // 啟動 gzip 壓縮
+      compress: false,  // 啟動 gzip 壓縮
       // 设置代理
       proxy: {
           // 將本地 /api/xxx 代理到 localhost:3000/api/xxx

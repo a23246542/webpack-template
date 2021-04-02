@@ -1,15 +1,21 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { srcPath, distPath } = require('./path')
 
 
 module.exports = {
   mode:'development',
-  entry:path.join(srcPath,'index.js'),
-  output: {
-    filename:'bundle.js',
-    path: distPath
+  // entry:path.join(srcPath,'index.js'),
+  entry: {
+    index: path.join(srcPath,'index'),
+    about: path.join(srcPath,'about'),
   },
+  // output: {
+  //   filename:'bundle.js',
+  //   path: `${distPath}/js`
+  //   // path: distPath
+  // },
   module:{
     rules:[
       {
@@ -60,8 +66,20 @@ module.exports = {
   plugins:[
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template:`${srcPath}/index.html`,
-      filename:'index.html'
+      title:'webpack前端自動化開發-首頁',
+      filename:'index.html', //要生成的檔案
+      template:`${srcPath}/html/index.html`, //模板來源
+      //chunks 表示該頁面要引用哪些 chunks，默認全部引用
+      chunks: ['index']
+    }),
+    // new HtmlWebpackPlugin({ //多入口單純產生html，同樣會引入main.js
+    //   filename: 'about.html'
+    // })
+    new HtmlWebpackPlugin({
+      title: '關於我們',
+      filename: 'about.html',
+      template:`${srcPath}/html/about.html`,
+      chunks:['about'],
     })
   ],
   // devServer: { //啟動本地服務
