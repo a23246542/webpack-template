@@ -70,7 +70,18 @@ module.exports = {
       filename:'index.html', //要生成的檔案
       template:`${srcPath}/html/index.html`, //模板來源
       //chunks 表示該頁面要引用哪些 chunks，默認全部引用
-      chunks: ['vendor','index']
+      chunks: ['index'], // 不需再考慮程式碼分割
+      minify: {
+        collapseComments: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        removeTagWhitespace: true,
+        removeEmptyAttributes: true,
+        removeTagWhitespace: true,
+      }
     }),
     // new HtmlWebpackPlugin({ //多入口單純產生html，同樣會引入main.js
     //   filename: 'about.html'
@@ -82,38 +93,5 @@ module.exports = {
       chunks:['about'],
     })
   ],
-  optimization: {
-    // 壓縮 css
-    // minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
-
-    // 分割程式碼模組
-    splitChunks: {
-        // chunks: 'all',
-        /**
-         * initial 入口chunk，對於非同步導入的文件不處理
-            async 分同步chunk，只對非同步導入的文件處理
-            all 全部chunk
-         */
-        // 缓存分组
-        cacheGroups: {
-            // 第三方模組
-            vendor: {
-                test: /node_modules/,
-                name: 'vendor', // chunk 名稱
-                chunks: 'initial',
-                enforce: true,
-                priority: 1, // 權限更高，優先抽離，重要
-                minSize: 0,  // 大小限制
-                minChunks: 1  // 最少複用過幾次
-            },
-            // 公共的模塊
-            // common: {
-            //     name: 'common', // chunk 名稱
-            //     priority: 0, // 優先級
-            //     minSize: 0,  // 公共模塊的大小限制
-            //     minChunks: 2  // 公共模塊最少複用過幾次
-            // }
-        }
-    }
-  }
+  
 }

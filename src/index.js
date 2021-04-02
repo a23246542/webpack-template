@@ -4,6 +4,7 @@ import '@/style/app.scss';
 // import 'bootstrap.bundle';
 import '@babel/polyfill'
 import { fetchData } from '@/js/utils';
+import { sum } from '@/js/math';
 import midImage from '@/assets/mid.jpg';
 
 $(function () {
@@ -20,7 +21,7 @@ $(function () {
   });
 });
 
-console.log('index js')
+console.log('home page');
 
 // 导入
 import { fn, name } from './js/fn'
@@ -28,7 +29,6 @@ fn()
 console.log('name is ', name)
 
 // 箭头函数
-const sum = (a, b) => a + b
 const result = sum(10, 20)
 console.log(result)
 
