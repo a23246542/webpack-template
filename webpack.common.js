@@ -30,14 +30,14 @@ module.exports = {
       {
         test:/\.js$/,
         use: {
-          loader:'babel-loader',
+          loader:'babel-loader?cacheDirectory',// 開啟緩存
           options: {
             presets:['@babel/preset-env'],// 代替.babelrc
             plugins:['@babel/plugin-proposal-class-properties']
           }
         },
-        include: srcPath,
-        exclude: /node_modules/
+        // include: srcPath,
+        exclude: /node_modules/ // 排除範圍，擇其一
       },
       // {
       //   test: /\.(jpg|jpeg|png|gif|tiff|ico|svg|eot|otf|ttf|woff|woff2)$/i,
