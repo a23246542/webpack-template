@@ -18,15 +18,15 @@ module.exports = {
   // },
   module:{
     rules:[
-      {
-        test:/\.css$/,
-        use:['style-loader','css-loader','postcss-loader']
-      },
-      {
-        test:/\.s[ac]ss$/,
-        // test:/\.(sass|scss)$/,
-        use:['style-loader','css-loader','postcss-loader','sass-loader']
-      },
+      // {
+      //   test:/\.css$/,
+      //   use:['style-loader','css-loader','postcss-loader']
+      // },
+      // {
+      //   test:/\.s[ac]ss$/,
+      //   // test:/\.(sass|scss)$/,
+      //   use:['style-loader','css-loader','postcss-loader','sass-loader']
+      // },
       {
         test:/\.js$/,
         use: {

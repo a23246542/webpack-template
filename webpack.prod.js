@@ -4,6 +4,9 @@ const webpackCommonConf = require('./webpack.common.js')
 const { srcPath, distPath } = require('./path')
 const { merge } = require('webpack-merge')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') //抽離css
+const TerserJSPlugin = require('terser-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(webpackCommonConf, {
@@ -16,6 +19,14 @@ module.exports = merge(webpackCommonConf, {
     },
     module: {
         rules: [
+            {
+              test:/\.css$/,
+              use:[MiniCssExtractPlugin.loader,'css-loader','postcss-loader']
+            },
+            {
+              test:/\.s[ac]ss$/,
+              use:[MiniCssExtractPlugin.loader,'css-loader','postcss-loader','sass-loader']
+            },
             // 圖片 - 考慮 base64 編碼的情况
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -82,6 +93,10 @@ module.exports = merge(webpackCommonConf, {
               noErrorOnMissing: true //避免ERROR in unable to locate/assets/static' glob
             }
           ]
+        }),
+        // 抽離css文件設定
+        new MiniCssExtractPlugin({
+          filename: 'css/[name].[contenthash:8].css'
         })
         // new webpack.DefinePlugin({
         //     // window.ENV = 'production'

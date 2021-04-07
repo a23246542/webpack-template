@@ -8,6 +8,15 @@ module.exports = merge(webpackCommonConf,{
   mode:'development',
   module: {
     rules: [
+        {
+          test:/\.css$/,
+          use:['style-loader','css-loader','postcss-loader']
+        },
+        {
+          test:/\.s[ac]ss$/,
+          // test:/\.(sass|scss)$/,
+          use:['style-loader','css-loader','postcss-loader','sass-loader']
+        },
         // 直接引入圖片 url
         {
             // test: /\.(png|jpg|jpeg|gif)$/,
