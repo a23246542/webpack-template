@@ -104,9 +104,6 @@ module.exports = merge(webpackCommonConf, {
         // })
     ],
     optimization: {
-      // 壓縮 css
-      // minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
-  
       // 分割程式碼模組
       splitChunks: {
           chunks: 'all', //全部都管
@@ -135,6 +132,8 @@ module.exports = merge(webpackCommonConf, {
                   minChunks: 2  // 公共模塊最少複用過幾次
               }
           }
-      }
+      },
+      // 壓縮css
+      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
     }
 })
