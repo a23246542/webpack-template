@@ -32,7 +32,16 @@ module.exports = {
         use: {
           loader:'babel-loader?cacheDirectory',// 開啟緩存
           options: {
-            presets:['@babel/preset-env'],// 代替.babelrc
+            // presets:['@babel/preset-env'],// 代替.babelrc
+            presets:[ // polyfill按需引入
+              [
+                "@babel/preset-env",
+                {
+                  "useBuiltIns":"usage",
+                  "corejs":3
+                }
+              ]
+            ],
             plugins:['@babel/plugin-proposal-class-properties']
           }
         },
