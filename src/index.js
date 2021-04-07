@@ -2,7 +2,7 @@ import 'bootstrap';
 import $ from 'jquery';
 import '@/style/app.scss';
 // import 'bootstrap.bundle';
-import '@babel/polyfill'
+// import '@babel/polyfill'// 改成按需引入
 import { fetchData } from '@/js/utils';
 import { sum } from '@/js/math';
 import midImage from '@/assets/mid.jpg';
